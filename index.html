@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 轻松发现你的下一款好游戏</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f8fafa;
+            color: #1e2a2f;
+            line-height: 1.65;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a {
+            color: #2b6e9c;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #144a6f;
+            text-decoration: underline;
+        }
+
+        /* Hero 深色区域 */
+        .hero {
+            background: linear-gradient(145deg, #0d1b26 0%, #1a2e3b 100%);
+            color: #e5edf3;
+            padding: 4rem 1.5rem 4.2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: radial-gradient(circle at 20% 40%, rgba(60, 140, 190, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+            position: relative;
+            z-index: 1;
+        }
+        .hero p {
+            font-size: 1.15rem;
+            max-width: 640px;
+            margin: 0.6rem auto 1.8rem;
+            color: #bfd6e2;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .sub {
+            font-size: 0.95rem;
+            color: #9bb7c9;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            padding-bottom: 1.6rem;
+            display: inline-block;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 通用容器 */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem;
+        }
+
+        /* 优势区 —— 三个卡片 */
+        .advantages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.4rem;
+        }
+        .advantage-card {
+            background: #ffffff;
+            border-radius: 18px;
+            padding: 2rem 1.6rem 1.8rem;
+            box-shadow: 0 6px 18px rgba(0, 20, 30, 0.05), 0 2px 4px rgba(0,0,0,0.02);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: 1px solid #e9f0f3;
+        }
+        .advantage-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 28px rgba(28, 80, 110, 0.08);
+        }
+        .advantage-card h3 {
+            font-size: 1.3rem;
+            font-weight: 500;
+            color: #1a2e3b;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+        .advantage-card h3 span {
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        .advantage-card p {
+            color: #3f535c;
+            font-size: 0.95rem;
+        }
+
+        /* 说明区 (混合介绍+场景) */
+        .explain-section {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2.2rem;
+            margin: 2rem 1.5rem 0.8rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid #e3edf2;
+        }
+        .explain-section h2 {
+            font-size: 1.7rem;
+            font-weight: 500;
+            color: #1a2e3b;
+            margin-bottom: 1.2rem;
+            letter-spacing: -0.01em;
+        }
+        .explain-section p {
+            margin-bottom: 1rem;
+            color: #2c4049;
+        }
+        .explain-section .highlight {
+            background: #f1f7fb;
+            padding: 1rem 1.4rem;
+            border-left: 4px solid #2b6e9c;
+            border-radius: 10px;
+            margin: 1.2rem 0;
+            font-size: 0.98rem;
+        }
+        .explain-section .highlight a {
+            font-weight: 500;
+        }
+
+        /* FAQ 摘要 (折叠感) */
+        .faq-digest {
+            margin: 1.2rem 0 0.2rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e0e9ed;
+            padding: 1rem 0;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            font-weight: 550;
+            color: #1a2e3b;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+        }
+        .faq-question::before {
+            content: '▹';
+            color: #2b6e9c;
+            margin-right: 0.6rem;
+            font-size: 1rem;
+        }
+        .faq-answer {
+            color: #43616b;
+            font-size: 0.94rem;
+            padding-left: 1.5rem;
+            margin-top: 0.2rem;
+        }
+
+        /* 底部链接区 */
+        .footer-links {
+            background: #edf3f7;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            margin-top: auto;
+            border-top: 1px solid #d5e0e6;
+        }
+        .footer-links p {
+            font-size: 0.95rem;
+            color: #39535f;
+            margin-bottom: 0.3rem;
+        }
+        .footer-links .link-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.6rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            .explain-section { padding: 1.8rem 1.2rem; margin: 1.2rem 0.8rem; }
+            .advantages { gap: 1.2rem; }
+            .advantage-card { padding: 1.6rem 1.2rem; }
+        }
+        @media (max-width: 480px) {
+            .hero { padding: 3rem 1rem 3.2rem; }
+            .container { padding: 1.8rem 1rem; }
+            .footer-links .link-group { gap: 1rem; flex-direction: column; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero 区 -->
+    <section class="hero">
+        <h1>爱游戏 · 不止于找游戏</h1>
+        <p>快速理解一个游戏到底适不适合你，从玩法、风格到社区氛围，帮你少走弯路。</p>
+        <div class="sub">独立推荐 · 玩家笔记 · 轻松发现</div>
+    </section>
+
+    <!-- 优势区 (卡片) -->
+    <div class="container">
+        <div class="advantages">
+            <div class="advantage-card">
+                <h3><span>🎯</span> 直觉筛选</h3>
+                <p>告别眼花缭乱的榜单。通过标签、时长、类型快速定位，每一款都附有简明玩家视角解读。</p>
+            </div>
+            <div class="advantage-card">
+                <h3><span>📘</span> 真实体验笔记</h3>
+                <p>不堆砌参数，只写上手后的真实感受：哪些设计让人眼前一亮，哪些细节容易忽略。</p>
+            </div>
+            <div class="advantage-card">
+                <h3><span>🌿</span> 安静探索</h3>
+                <p>没有弹窗轰炸，没有夸张标语。像翻一本游戏手册一样，从容了解，再做决定。</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 说明区 + 场景 + 提示 -->
+    <div class="explain-section">
+        <h2>这个页面能帮你做什么？</h2>
+        <p>很多人想快速知道一个游戏网站究竟值不值得收藏，里面收录的内容是否贴近自己的口味。<strong>爱游戏</strong> 的定位很简单：提供一个清爽的参考站，让你在几分钟内明白一款游戏的核心趣味，而不是被营销话术包围。</p>
+        <p>无论是想找一款周末放松的休闲作品，还是想了解某个热门游戏为何受追捧，这里都会用直白的语言给你一个判断依据。每个游戏条目都包含玩法简述、风格截图节选以及来自普通玩家的短评。</p>
+
+        <div class="highlight">
+            🔍 举个例子：你想找一款「建造 + 探索」类的游戏，可以直接翻阅相关标签下的条目，每条都附有「适合谁」的小提示。<br>
+            如果你对某个游戏产生兴趣，可以顺着页面中的链接去了解更多 —— 比如从 <a href="https://siteportal-i-game.com.cn">爱游戏</a> 的主页继续浏览完整分类。
+        </div>
+
+        <p>我们刻意不做「评分排行」和「必玩清单」，因为每个人的喜好差异很大。更希望你能通过几段平实的介绍，自己判断是否对味。页面也会不定期更新新收录的作品和玩家反馈节选。</p>
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <div class="container" style="padding-top: 0.4rem; padding-bottom: 0.8rem;">
+        <div style="margin-bottom: 0.4rem; font-weight: 500; color: #1a2e3b; font-size: 1.2rem;">常见疑问 · 简短回答</div>
+        <div class="faq-digest">
+            <div class="faq-item">
+                <div class="faq-question">这里的游戏推荐是编辑决定的吗？</div>
+                <div class="faq-answer">一部分由编辑筛选，同时也收录玩家提名和社区反馈，尽量覆盖多元口味。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">能看到游戏的价格或购买链接吗？</div>
+                <div class="faq-answer">目前以介绍和体验描述为主，部分条目会附带官方或商店链接，但不作为主要功能。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">我也可以参与推荐或评价吗？</div>
+                <div class="faq-answer">欢迎通过站内反馈渠道提交你的游戏笔记，审核后有机会出现在对应页面中。</div>
+            </div>
+        </div>
+        <p style="margin-top: 1.4rem; font-size: 0.93rem; color: #4b6672;">更多问题可直接浏览 <a href="https://siteportal-i-game.com.cn">爱游戏</a> 内的帮助板块，那里有更详细的说明。</p>
+    </div>
+
+    <!-- 底部链接 -->
+    <footer class="footer-links">
+        <p>以温和的方式，发现适合你的游戏</p>
+        <div class="link-group">
+            <a href="https://siteportal-i-game.com.cn">爱游戏</a>
+            <a href="#">最新收录</a>
+            <a href="#">关于站点</a>
+            <a href="#">反馈建议</a>
+        </div>
+        <p style="margin-top: 0.8rem; font-size: 0.85rem; color: #5a7582;">&copy; 爱游戏  ·  内容持续生长</p>
+    </footer>
+
+</body>
+</html>

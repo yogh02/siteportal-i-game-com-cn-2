@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://yogh02.github.io/siteportal-i-game-com-cn-2/sitemap.xml
