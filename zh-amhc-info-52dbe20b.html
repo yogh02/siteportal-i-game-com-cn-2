@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>澳门六合彩 · 知识库入门</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f6f9;
+            color: #1e2a3a;
+            line-height: 1.7;
+        }
+
+        /* 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1a2e 0%, #142d44 100%);
+            color: #eaf2f8;
+            padding: 4rem 2rem 3.5rem;
+            text-align: center;
+            border-bottom: 4px solid #c9a84c;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 720px;
+            margin: 0 auto;
+            opacity: 0.88;
+        }
+
+        .hero .meta-badge {
+            display: inline-block;
+            margin-top: 2rem;
+            background: rgba(201, 168, 76, 0.2);
+            border: 1px solid #c9a84c;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #dcc87a;
+        }
+
+        /* 正文区 */
+        .container {
+            max-width: 1120px;
+            margin: 0 auto;
+            padding: 2.5rem 1.5rem 4rem;
+        }
+
+        /* 目录感布局：卡片网格 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.8rem;
+            margin: 2.5rem 0;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border-left: 4px solid #c9a84c;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 24px rgba(0, 20, 40, 0.08);
+        }
+
+        .card h3 {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 0.6rem;
+            color: #0b1a2e;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: #2d3f54;
+        }
+
+        .card .label {
+            display: inline-block;
+            background: #eef2f7;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #3a5470;
+            margin-bottom: 0.8rem;
+            letter-spacing: 0.3px;
+        }
+
+        /* 说明区 + 提示区 */
+        .info-section {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 2rem 2rem 2.2rem;
+            margin: 2rem 0 1.5rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .info-section h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.2rem;
+            color: #0b1a2e;
+        }
+
+        .info-section p {
+            margin-bottom: 1rem;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #b8860b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        a:hover {
+            color: #8b6d0b;
+            border-bottom-color: #c9a84c;
+        }
+
+        /* 提示卡 */
+        .tip-box {
+            background: #f8f4ea;
+            border-left: 5px solid #c9a84c;
+            padding: 1.2rem 1.8rem;
+            border-radius: 8px;
+            margin: 1.8rem 0;
+        }
+
+        .tip-box strong {
+            color: #2b4a3b;
+        }
+
+        .faq-preview {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .faq-item {
+            background: #f9fafc;
+            padding: 1rem 1.3rem;
+            border-radius: 10px;
+            border: 1px solid #e9edf2;
+        }
+
+        .faq-item .q {
+            font-weight: 600;
+            color: #0b1a2e;
+        }
+
+        .faq-item .a {
+            font-size: 0.9rem;
+            color: #3e5570;
+            margin-top: 0.3rem;
+        }
+
+        /* 相关信息区 */
+        .related-links {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.8rem 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .related-links h3 {
+            font-weight: 500;
+            margin-bottom: 0.8rem;
+            color: #0b1a2e;
+        }
+
+        .related-links ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem 2.2rem;
+        }
+
+        .related-links li {
+            font-size: 0.95rem;
+        }
+
+        .related-links li::before {
+            content: "▸";
+            color: #c9a84c;
+            margin-right: 0.4rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .faq-preview {
+                grid-template-columns: 1fr;
+            }
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            .container {
+                padding: 1.5rem 1rem 3rem;
+            }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem 1.5rem;
+            font-size: 0.85rem;
+            color: #5a6f88;
+            border-top: 1px solid #dce3eb;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 深色头图 -->
+    <header class="hero">
+        <h1>澳门六合彩 · 知识库</h1>
+        <p>关于历史背景、玩法规则、概率逻辑的简明档案。本站作为信息聚合与索引入口，提供稳定结构化参考。</p>
+        <span class="meta-badge">📚 目录版 · 持续更新</span>
+    </header>
+
+    <main class="container">
+
+        <!-- 卡片目录感布局：介绍特点场景 -->
+        <div class="card-grid">
+            <div class="card">
+                <span class="label">📖 背景</span>
+                <h3>沿革与定位</h3>
+                <p>澳门六合彩属于数字型彩票游戏，在澳门特别行政区受相关博彩法规监管。其开奖规则基于固定号码池与随机抽取机制，历史悠久，参与群体广泛。</p>
+            </div>
+            <div class="card">
+                <span class="label">⚙️ 玩法</span>
+                <h3>选号与组合</h3>
+                <p>参与者从1至49个号码中选取若干数字，根据所选号码与开奖号码的匹配个数决定中奖层级。不同玩法对应不同组合逻辑与赔率结构。</p>
+            </div>
+            <div class="card">
+                <span class="label">📊 概率</span>
+                <h3>数学与期望</h3>
+                <p>各奖项的中奖概率可通过组合数学计算得出。了解基础概率与期望值有助于理性看待游戏性质，避免非理性投入。</p>
+            </div>
+            <div class="card">
+                <span class="label">🔐 规范</span>
+                <h3>责任与提醒</h3>
+                <p>任何形式的博彩均存在财务风险。应为娱乐目的参与，切勿超过自身承受能力。澳门六合彩仅限合法年龄人士参与。</p>
+            </div>
+        </div>
+
+        <!-- 说明区 -->
+        <section class="info-section">
+            <h2>📄 关于本知识库</h2>
+            <p>本页面并非官方运营站点，而是以资料整理、信息索引为目标的介绍页。旨在为用户提供关于<a href="https://zh-amhc.com">澳门六合彩</a>的稳定阅读入口与结构化背景说明。所有数据与规则均参考公开资料整理，不构成任何购买建议或诱导行为。</p>
+            <p>页面内容覆盖基础玩法、历史脉络与常见疑问摘要，同时保留指向核心信息源的链接。如果你需要查询完整开奖记录、规则文档或官方公告，建议通过可靠渠道核实。</p>
+        </section>
+
+        <!-- 提示区 -->
+        <div class="tip-box">
+            <strong>💡 提示：</strong> 在检索或讨论澳门六合彩相关话题时，请优先参考具备公信力的信息源。本页所提供的链接指向 <a href="https://zh-amhc.com">澳门六合彩</a> 相关介绍聚合，可作为信息探索的起点之一。
+        </div>
+
+        <!-- FAQ 摘要 + 相关信息区合并 -->
+        <section class="info-section" style="margin-top: 1.2rem;">
+            <h2>❓ 常见疑问摘要</h2>
+            <div class="faq-preview">
+                <div class="faq-item">
+                    <div class="q">开奖频率是固定的吗？</div>
+                    <div class="a">澳门六合彩通常每星期固定开奖，具体日期与时间以官方公告为准。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">如何理解“特码”？</div>
+                    <div class="a">特码指单独开出的一个特别号码，部分玩法以该号码作为中奖依据。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">最低投注额是多少？</div>
+                    <div class="a">每注金额依照发行机构规定，通常设有最低投注限制。</div>
+                </div>
+                <div class="faq-item">
+                    <div class="q">是否存在稳赢策略？</div>
+                    <div class="a">彩票本质为随机游戏，没有任何策略能保证稳定盈利，请理性参与。</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 相关信息区 -->
+        <div class="related-links">
+            <h3>📎 相关信息入口</h3>
+            <ul>
+                <li><a href="https://zh-amhc.com">澳门六合彩</a> — 综合介绍</li>
+                <li>玩法说明档案</li>
+                <li>概率计算参考</li>
+                <li>历史开奖记录</li>
+                <li>责任博彩指引</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>本页为知识库入口页，仅供信息参考。请合理分配时间，保持健康娱乐心态。</p>
+            <p style="margin-top: 0.5rem;">— 内容版本 · 2025 —</p>
+        </footer>
+
+    </main>
+</body>
+</html>
